@@ -35,6 +35,7 @@ Markdown==3.9
 numpy==2.3.3
 packaging==25.0
 pandas==2.3.2
+pillow==11.3.0
 prompt_toolkit==3.0.52
 pyasn1==0.6.1
 pyasn1_modules==0.4.2
@@ -43,6 +44,7 @@ PyJWT==2.10.1
 pyOpenSSL==25.2.0
 python-crontab==3.3.0
 python-dateutil==2.9.0.post0
+python-dotenv==1.1.1
 pytz==2025.2
 redis==6.4.0
 requests==2.32.5
