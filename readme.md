@@ -2,14 +2,14 @@
 
 # DJ Rest API Boilerplate
 
-A production-ready boilerplate for Django REST APIs with WebSockets and async task support.
+A production-ready boilerplate for Django REST APIs with custom User model, WebSockets and async task support via Celery.
 
 ## Features
 
 - **Django REST Framework:** For building robust APIs quickly.
 - **WebSockets:** Real-time support via Django Channels.
-- **Async Tasks:** Background job processing (e.g., Celery).
-- **Authentication:** Pre-configured `oauth` module.
+- **Async Tasks:** Background job processing (Django-Celery).
+- **Authentication:** Pre-configured normal & social auth modules.
 - **Modular Design:** Clean, scalable project structure.
 
 ## Quick Start
@@ -17,7 +17,7 @@ A production-ready boilerplate for Django REST APIs with WebSockets and async ta
 1.  **Clone the repo:**
 
     ```sh
-    git clone [https://github.com/your-username/dj-rest-api.git](https://github.com/your-username/dj-rest-api.git)
+    git clone [https://github.com/pyserve/dj-rest-api.git](https://github.com/pyserve/dj-rest-api.git)
     cd dj-rest-api
     ```
 
