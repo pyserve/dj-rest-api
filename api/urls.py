@@ -17,6 +17,8 @@ urlpatterns = [
     path("dj-rest-auth/", include("dj_rest_auth.urls")),
     path("dj-rest-auth/registration/", include("dj_rest_auth.registration.urls")),
     path("dj-rest-auth/google/", GoogleLoginView.as_view(), name="google_login"),
+    path('accounts/', include('django.contrib.auth.urls')), 
+    path('oauth/', include('oauth2_provider.urls', namespace='oauth2_provider')),
     path("", include(router.urls)),
 ]
 

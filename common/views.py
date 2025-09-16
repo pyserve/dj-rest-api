@@ -9,6 +9,29 @@ class BaseModelViewSet(viewsets.ModelViewSet, MassActionMixin, FiltersetMixin):
     # filterset_fields = "__all__"
     ordering_fields = "__all__"
 
+    @property
+    def search_fields(self):
+        model = self.queryset.model
+        field_Types = [
+            'CharField', 'TextField', 'EmailField', 'SlugField', 'UUIDField'
+        ]
+        return [
+            f.name for f in model._meta.get_fields()
+            if f.get_internal_type() in field_Types
+        ]
+        
+    @property
+    def filterset_fields(self):
+        model = self.queryset.model
+        return [
+            f.name for f in model._meta.get_fields()
+            if isinstance(f, models.Field) and 
+            not f.many_to_many and 
+            not f.one_to_many and 
+            not isinstance(f, models.JSONField)
+        ]
+        
+        
     def retrieve(self, request, *args, **kwargs):
         response = super().retrieve(request, *args, **kwargs)
         metadata = self.get_model_schema()

@@ -28,6 +28,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    'django.contrib.sites',
 
     "djauth.apps.DjauthConfig",
     "djangoseed.apps.DjangoseedConfig",
@@ -40,6 +41,7 @@ INSTALLED_APPS = [
     "channels",
     "corsheaders",
     "dj_rest_auth",
+    "oauth2_provider",
     "django_filters",
     "rest_framework",
     "allauth.account",
@@ -48,7 +50,19 @@ INSTALLED_APPS = [
     "allauth.socialaccount.providers.google",
 ]
 
-SITE_ID = 1
+OAUTH2_PROVIDER = {
+    'ACCESS_TOKEN_EXPIRE_SECONDS': 36000,
+    'SCOPES': {
+        'read': 'Read access to protected resources',
+        'write': 'Write access to protected resources',
+        'profile': 'Access user profile info',
+    },
+    'PKCE_REQUIRED': False,
+}
+LOGIN_URL = '/admin/login/'
+
+
+SITE_ID = 2
 CORS_ALLOW_ALL_ORIGINS = True
 AUTH_USER_MODEL = "djauth.User"
 FRONTEND_URL = "http://localhost:3000"
@@ -76,10 +90,12 @@ REST_FRAMEWORK = {
         "rest_framework.authentication.BasicAuthentication",
         "rest_framework.authentication.SessionAuthentication",
         "rest_framework.authentication.TokenAuthentication",
+        'oauth2_provider.contrib.rest_framework.OAuth2Authentication', 
     ],
     "DEFAULT_FILTER_BACKENDS": (
         "django_filters.rest_framework.DjangoFilterBackend",
         "rest_framework.filters.OrderingFilter",
+        'rest_framework.filters.SearchFilter',
     ),
     "DEFAULT_RENDERER_CLASSES": [
         "rest_framework.renderers.JSONRenderer",
